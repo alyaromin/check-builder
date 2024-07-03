@@ -23,7 +23,13 @@ public class ArgumentParser {
 				String[] productDetails = arg.split("-");
 				int productId = Integer.parseInt(productDetails[0]);
 				int quantity = Integer.parseInt(productDetails[1]);
-				products.put(productId, quantity);
+				
+				if (products.containsKey(productId)) {
+					products.put(productId, products.get(productId) + quantity);
+				} else {
+					products.put(productId, quantity);
+				}
+								
 			} else if (arg.startsWith("discountCard=")) {
 				// get discountCard
 				this.discountCard = Integer.parseInt(arg.split("=")[1]);
